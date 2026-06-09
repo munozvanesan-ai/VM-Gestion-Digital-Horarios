@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horarios y Clases — VM Gestión Digital</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f1629; font-family: 'Segoe UI', Arial, sans-serif; min-height: 100vh; padding: 20px 16px 40px; }
+  .container { max-width: 480px; margin: 0 auto; }
+
+  .header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding: 16px 0; }
+  .logo { background: #E8846A; border-radius: 10px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .logo span { color: white; font-weight: 900; font-size: 13px; line-height: 1.1; text-align: center; }
+  .brand-name { color: white; font-size: 16px; font-weight: 700; }
+  .brand-sub { color: #64748b; font-size: 12px; margin-top: 2px; }
+
+  .page-label { color: #f97316; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .page-title { color: white; font-size: 22px; font-weight: 800; margin-bottom: 24px; line-height: 1.2; }
+
+  .card { background: rgba(255,255,255,0.05); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .card-orange { border-left: 3px solid #f97316; }
+  .card-green  { border-left: 3px solid #22c55e; }
+  .card-blue   { border-left: 3px solid #60a5fa; }
+  .card-step   { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.2); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .card-gray   { background: rgba(148,163,184,0.06); border: 1px solid rgba(148,163,184,0.15); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+
+  .card-eyebrow { color: #64748b; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .card-title { color: white; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+
+  .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .step-badge { background: #f97316; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+  .step-badge.gray { background: #475569; }
+  .step-title { color: white; font-size: 14px; font-weight: 700; }
+  .step-desc { color: #94a3b8; font-size: 12px; padding-left: 36px; margin-bottom: 10px; line-height: 1.5; }
+
+  .schedule { margin-bottom: 4px; }
+  .schedule-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 5px; }
+  .day { font-size: 13px; font-weight: 700; min-width: 110px; }
+  .day-orange { color: #f97316; }
+  .day-green  { color: #22c55e; }
+  .day-blue   { color: #60a5fa; }
+  .day-note { color: #cbd5e1; font-size: 12px; }
+
+  .btn { display: flex; align-items: center; gap: 10px; border-radius: 10px; padding: 11px 14px; margin-top: 10px; text-decoration: none; transition: opacity 0.15s; }
+  .btn:hover { opacity: 0.85; }
+  .btn-orange { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.35); }
+  .btn-green  { background: rgba(34,197,94,0.1);  border: 1px solid rgba(34,197,94,0.3);  }
+  .btn-blue   { background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
+  .btn-gray   { background: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.2); }
+  .btn-icon { font-size: 20px; }
+  .btn-icon-orange { color: #f97316; }
+  .btn-icon-green  { color: #22c55e; }
+  .btn-icon-blue   { color: #60a5fa; }
+  .btn-icon-gray   { color: #94a3b8; }
+  .btn-text { color: #e2e8f0; font-size: 13px; font-weight: 600; }
+  .btn-sub  { color: #64748b; font-size: 11px; margin-top: 1px; }
+
+  .note { color: #64748b; font-size: 11px; margin-top: 8px; font-style: italic; line-height: 1.4; }
+  .divider { height: 1px; background: rgba(255,255,255,0.07); margin: 16px 0; }
+  .footer { text-align: center; color: #334155; font-size: 11px; margin-top: 28px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo"><span>VM</span></div>
+    <div>
+      <div class="brand-name">VM Gestión Digital</div>
+      <div class="brand-sub">Escuela de negocios</div>
+    </div>
+  </div>
+
+  <div class="page-label">Cronograma de clases</div>
+  <div class="page-title">¿Cómo conectarme a mis clases?</div>
+
+  <!-- Paso 1 -->
+  <div class="card-step">
+    <div class="step-header">
+      <div class="step-badge">1</div>
+      <div class="step-title">Antes de empezar — vinculá tu Google Calendar</div>
+    </div>
+    <div class="step-desc">Mirá este video para ver las clases grabadas y sincronizar tu calendario.</div>
+    <a class="btn btn-orange" href="https://youtu.be/tPowxjcW6VA" target="_blank">
+      <span class="btn-icon btn-icon-orange">▶</span>
+      <div>
+        <div class="btn-text">Ver tutorial de acceso</div>
+        <div class="btn-sub">youtu.be/tPowxjcW6VA</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Paso 2 -->
+  <div class="card card-orange">
+    <div class="card-eyebrow">Paso 2 — Consultoría de negocios + Excel</div>
+    <div class="card-title">Clases en vivo con Vanesa</div>
+    <div class="schedule">
+      <div class="schedule-row">
+        <span class="day day-orange">Lunes 13–14.20 hs</span>
+        <span class="day-note">Para principiantes</span>
+      </div>
+      <div class="schedule-row">
+        <span class="day day-orange">Lunes 15–16.20 hs</span>
+        <span class="day-note">Desde la 4ta clase</span>
+      </div>
+    </div>
+    <a class="btn btn-orange" href="https://meet.google.com/cda-zxvt-tbj" target="_blank">
+      <span class="btn-icon btn-icon-orange">📹</span>
+      <div>
+        <div class="btn-text">Unirse a la clase</div>
+        <div class="btn-sub">meet.google.com/cda-zxvt-tbj</div>
+      </div>
+    </a>
+    <div class="note">Siempre usamos el mismo link para conectarnos en vivo.</div>
+  </div>
+
+  <!-- Soporte -->
+  <div class="card card-green">
+    <div class="card-eyebrow">Soporte — dudas de planillas y clases grabadas</div>
+    <div class="card-title">Clases de Soporte</div>
+    <div class="schedule">
+      <div class="schedule-row">
+        <span class="day day-green">Miér. y Juev. 13–14 hs</span>
+      </div>
+    </div>
+    <a class="btn btn-green" href="https://meet.google.com/rar-btvb-tab" target="_blank">
+      <span class="btn-icon btn-icon-green">📹</span>
+      <div>
+        <div class="btn-text">Unirse al soporte</div>
+        <div class="btn-sub">meet.google.com/rar-btvb-tab</div>
+      </div>
+    </a>
+    <div class="note">Tolerancia de 20 min. Si no hay asistentes, el equipo cierra la llamada. Las consultas de negocios son los lunes con Vanesa.</div>
+  </div>
+
+  <!-- Soporte principiantes -->
+  <div class="card card-blue">
+    <div class="card-eyebrow">Soporte para principiantes</div>
+    <div class="card-title">Martes y viernes</div>
+    <div class="schedule">
+      <div class="schedule-row">
+        <span class="day day-blue">Mar. y Vier. 13–14 hs</span>
+      </div>
+    </div>
+    <a class="btn btn-blue" href="https://meet.google.com/vrk-yfwv-znv" target="_blank">
+      <span class="btn-icon btn-icon-blue">📹</span>
+      <div>
+        <div class="btn-text">Unirse al soporte</div>
+        <div class="btn-sub">meet.google.com/vrk-yfwv-znv</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Plataforma -->
+  <div class="card-gray">
+    <div class="step-header">
+      <div class="step-badge gray">?</div>
+      <div class="step-title">¿Cómo usar la plataforma?</div>
+    </div>
+    <div class="step-desc">Dejá consultas, pedí revisión de archivos (respuesta en 48hs) y accedé a los módulos y clases grabadas.</div>
+    <a class="btn btn-gray" href="https://youtu.be/8TFUBXfmRxw" target="_blank">
+      <span class="btn-icon btn-icon-gray">▶</span>
+      <div>
+        <div class="btn-text">Ver tutorial de la plataforma</div>
+        <div class="btn-sub">youtu.be/8TFUBXfmRxw</div>
+      </div>
+    </a>
+    <div class="note">Para compartir archivos escribí a: vmgestiondigital@gmail.com</div>
+  </div>
+
+  <div class="footer">¡Muchos éxitos en tu camino! · VM Gestión Digital</div>
+
+</div>
+</body>
+</html>
