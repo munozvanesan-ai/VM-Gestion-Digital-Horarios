@@ -6,14 +6,16 @@
 <title>Horarios y Clases — VM Gestión Digital</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #0f1629; font-family: 'Segoe UI', Arial, sans-serif; min-height: 100vh; padding: 20px 16px 40px; }
-  .container { max-width: 480px; margin: 0 auto; }
+  html, body { width: 100%; background: #0f1629; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { padding: 20px 16px 40px; }
+  .container { width: 100%; max-width: 600px; margin: 0 auto; }
 
-  .header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; padding: 16px 0; }
-  .logo { background: #E8846A; border-radius: 10px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .logo span { color: white; font-weight: 900; font-size: 13px; line-height: 1.1; text-align: center; }
-  .brand-name { color: white; font-size: 16px; font-weight: 700; }
+  .header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding: 16px 0; }
+  .brand-name { color: white; font-size: 18px; font-weight: 800; }
   .brand-sub { color: #64748b; font-size: 12px; margin-top: 2px; }
+
+  .badge { display: inline-flex; align-items: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 6px 14px; margin-bottom: 14px; }
+  .badge-text { color: #f1f5f9; font-size: 12px; font-weight: 700; }
 
   .page-label { color: #f97316; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
   .page-title { color: white; font-size: 22px; font-weight: 800; margin-bottom: 24px; line-height: 1.2; }
@@ -32,29 +34,35 @@
   .step-badge { background: #f97316; color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
   .step-badge.gray { background: #475569; }
   .step-title { color: white; font-size: 14px; font-weight: 700; }
-  .step-desc { color: #94a3b8; font-size: 12px; padding-left: 36px; margin-bottom: 10px; line-height: 1.5; }
+
+  .steps-list { padding-left: 36px; margin-bottom: 10px; }
+  .steps-list li { color: #94a3b8; font-size: 12px; line-height: 1.7; list-style: none; display: flex; align-items: flex-start; gap: 8px; }
+  .steps-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #f97316; flex-shrink: 0; margin-top: 6px; }
 
   .schedule { margin-bottom: 4px; }
-  .schedule-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 5px; }
-  .day { font-size: 13px; font-weight: 700; min-width: 110px; }
+  .schedule-row { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+  .day { font-size: 13px; font-weight: 700; }
   .day-orange { color: #f97316; }
   .day-green  { color: #22c55e; }
   .day-blue   { color: #60a5fa; }
-  .day-note { color: #cbd5e1; font-size: 12px; }
+  .day-note { color: #94a3b8; font-size: 11px; }
 
-  .btn { display: flex; align-items: center; gap: 10px; border-radius: 10px; padding: 11px 14px; margin-top: 10px; text-decoration: none; transition: opacity 0.15s; }
-  .btn:hover { opacity: 0.85; }
+  .btn { display: flex; align-items: center; gap: 10px; border-radius: 10px; padding: 11px 14px; margin-top: 10px; text-decoration: none; }
   .btn-orange { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.35); }
   .btn-green  { background: rgba(34,197,94,0.1);  border: 1px solid rgba(34,197,94,0.3);  }
   .btn-blue   { background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.3); }
   .btn-gray   { background: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.2); }
-  .btn-icon { font-size: 20px; }
+  .btn-icon { font-size: 18px; }
   .btn-icon-orange { color: #f97316; }
   .btn-icon-green  { color: #22c55e; }
   .btn-icon-blue   { color: #60a5fa; }
   .btn-icon-gray   { color: #94a3b8; }
   .btn-text { color: #e2e8f0; font-size: 13px; font-weight: 600; }
   .btn-sub  { color: #64748b; font-size: 11px; margin-top: 1px; }
+
+  .features { margin-top: 8px; }
+  .feature-item { color: #94a3b8; font-size: 12px; margin-bottom: 5px; display: flex; align-items: flex-start; gap: 6px; line-height: 1.5; }
+  .feature-dot { width: 4px; height: 4px; background: #475569; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
 
   .note { color: #64748b; font-size: 11px; margin-top: 8px; font-style: italic; line-height: 1.4; }
   .divider { height: 1px; background: rgba(255,255,255,0.07); margin: 16px 0; }
@@ -65,11 +73,14 @@
 <div class="container">
 
   <div class="header">
-    <div class="logo"><span>VM</span></div>
     <div>
       <div class="brand-name">VM Gestión Digital</div>
-      <div class="brand-sub">Escuela de negocios</div>
+      <div class="brand-sub">Escuela para dueños de negocios</div>
     </div>
+  </div>
+
+  <div class="badge">
+    <span class="badge-text">Más de 20 clases en vivo por mes</span>
   </div>
 
   <div class="page-label">Cronograma de clases</div>
@@ -79,14 +90,41 @@
   <div class="card-step">
     <div class="step-header">
       <div class="step-badge">1</div>
-      <div class="step-title">Antes de empezar — vinculá tu Google Calendar</div>
+      <div class="step-title">Vinculá tu calendario para acceder a las clases desde tu teléfono o computadora</div>
     </div>
-    <div class="step-desc">Mirá este video para ver las clases grabadas y sincronizar tu calendario.</div>
-    <a class="btn btn-orange" href="https://youtu.be/tPowxjcW6VA" target="_blank">
-      <span class="btn-icon btn-icon-orange">▶</span>
+    <p style="color:#94a3b8; font-size:12px; padding-left:36px; margin-bottom:10px; line-height:1.6;"><strong style="color:#f1f5f9;">¿Para qué vincular?</strong> Para buscar la clase en tu teléfono, darle clic e ingresar de una sola vez, y poder ver las clases grabadas cuando quieras.</p>
+    <ul class="steps-list">
+      <li>Presioná el botón de la clase que querés vincular</li>
+      <li>Tocá "Añadir a mi calendario"</li>
+      <li>La clase queda guardada y te aparece cada semana en tu Google Calendar</li>
+      <li>Para ver clases grabadas, buscá la fecha de la clase que querés ver y presioná el cuadradito rojo 🎬</li>
+    </ul>
+    <a class="btn btn-orange" href="https://calendar.google.com/calendar/r/eventedit?text=Consultor%C3%ADa+de+negocios+%2B+Excel+%E2%80%94+VM+Gesti%C3%B3n&dates=20260608T160000Z/20260608T172000Z&details=Unirse+a+la+clase%3A+https%3A%2F%2Fmeet.google.com%2Fcda-zxvt-tbj&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DMO" target="_blank">
+      <span class="btn-icon btn-icon-orange">📅</span>
       <div>
-        <div class="btn-text">Ver tutorial de acceso</div>
-        <div class="btn-sub">youtu.be/tPowxjcW6VA</div>
+        <div class="btn-text">Clase en vivo — Consultoría de negocios + Excel</div>
+        <div class="btn-sub">13hs y 15hs</div>
+      </div>
+    </a>
+    <a class="btn btn-orange" href="https://calendar.google.com/calendar/r/eventedit?text=Soporte+VM+Gesti%C3%B3n&dates=20260609T160000Z/20260609T170000Z&details=Unirse+al+soporte%3A+https%3A%2F%2Fmeet.google.com%2Frar-btvb-tab&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DTU,WE,TH,FR" target="_blank">
+      <span class="btn-icon btn-icon-orange">📅</span>
+      <div>
+        <div class="btn-text">Clase de soporte — 13hs</div>
+        <div class="btn-sub">Mar. · Miér. · Juev. · Vier.</div>
+      </div>
+    </a>
+    <a class="btn btn-orange" href="https://calendar.google.com/calendar/r/eventedit?text=Soporte+VM+Gesti%C3%B3n+16hs&dates=20260609T190000Z/20260609T200000Z&details=Unirse+al+soporte%3A+https%3A%2F%2Fmeet.google.com%2Fcov-adcv-bij&recur=RRULE:FREQ%3DWEEKLY;BYDAY%3DTU,TH" target="_blank">
+      <span class="btn-icon btn-icon-orange">📅</span>
+      <div>
+        <div class="btn-text">Clase de soporte — 16hs</div>
+        <div class="btn-sub">Mar. y Juev.</div>
+      </div>
+    </a>
+    <a class="btn btn-orange" href="#" target="_blank">
+      <span class="btn-icon btn-icon-orange">🖼</span>
+      <div>
+        <div class="btn-text">Ver tutorial en imágenes</div>
+        <div class="btn-sub">Paso a paso con capturas</div>
       </div>
     </a>
   </div>
@@ -98,11 +136,9 @@
     <div class="schedule">
       <div class="schedule-row">
         <span class="day day-orange">Lunes 13–14.20 hs</span>
-        <span class="day-note">Para principiantes</span>
       </div>
       <div class="schedule-row">
         <span class="day day-orange">Lunes 15–16.20 hs</span>
-        <span class="day-note">Desde la 4ta clase</span>
       </div>
     </div>
     <a class="btn btn-orange" href="https://meet.google.com/cda-zxvt-tbj" target="_blank">
@@ -115,52 +151,61 @@
     <div class="note">Siempre usamos el mismo link para conectarnos en vivo.</div>
   </div>
 
-  <!-- Soporte -->
+  <!-- Soporte unificado -->
   <div class="card card-green">
     <div class="card-eyebrow">Soporte — dudas de planillas y clases grabadas</div>
     <div class="card-title">Clases de Soporte</div>
     <div class="schedule">
       <div class="schedule-row">
-        <span class="day day-green">Miér. y Juev. 13–14 hs</span>
+        <span class="day day-green">Mar. · Miér. · Juev. · Vier. 13–14 hs</span>
+      </div>
+      <div style="padding-left: 0; margin-bottom: 6px;">
+        <div class="day-note">· Mar. y Vier. — Soporte para principiantes</div>
+        <div class="day-note">· Miér. y Juev. — Soporte consultas avanzadas</div>
+      </div>
+      <div class="schedule-row">
+        <span class="day day-green">Mar. y Juev. 16–17 hs</span>
       </div>
     </div>
     <a class="btn btn-green" href="https://meet.google.com/rar-btvb-tab" target="_blank">
       <span class="btn-icon btn-icon-green">📹</span>
       <div>
-        <div class="btn-text">Unirse al soporte</div>
+        <div class="btn-text">Unirse a la clase de soporte — 13hs</div>
         <div class="btn-sub">meet.google.com/rar-btvb-tab</div>
+      </div>
+    </a>
+    <a class="btn btn-green" href="https://meet.google.com/cov-adcv-bij" target="_blank">
+      <span class="btn-icon btn-icon-green">📹</span>
+      <div>
+        <div class="btn-text">Unirse a la clase de soporte — 16hs</div>
+        <div class="btn-sub">meet.google.com/cov-adcv-bij</div>
       </div>
     </a>
     <div class="note">Tolerancia de 20 min. Si no hay asistentes, el equipo cierra la llamada. Las consultas de negocios son los lunes con Vanesa.</div>
   </div>
 
-  <!-- Soporte principiantes -->
-  <div class="card card-blue">
-    <div class="card-eyebrow">Soporte para principiantes</div>
-    <div class="card-title">Martes y viernes</div>
-    <div class="schedule">
-      <div class="schedule-row">
-        <span class="day day-blue">Mar. y Vier. 13–14 hs</span>
-      </div>
-    </div>
-    <a class="btn btn-blue" href="https://meet.google.com/vrk-yfwv-znv" target="_blank">
-      <span class="btn-icon btn-icon-blue">📹</span>
-      <div>
-        <div class="btn-text">Unirse al soporte</div>
-        <div class="btn-sub">meet.google.com/vrk-yfwv-znv</div>
-      </div>
-    </a>
-  </div>
-
   <div class="divider"></div>
 
-  <!-- Plataforma -->
+  <!-- Plataforma Skool -->
   <div class="card-gray">
     <div class="step-header">
-      <div class="step-badge gray">?</div>
-      <div class="step-title">¿Cómo usar la plataforma?</div>
+      <div class="step-badge gray">S</div>
+      <div class="step-title">¿Cómo usar la plataforma Skool? · Clases y módulos grabados</div>
     </div>
-    <div class="step-desc">Dejá consultas, pedí revisión de archivos (respuesta en 48hs) y accedé a los módulos y clases grabadas.</div>
+    <div class="features">
+      <div class="feature-item"><span class="feature-dot"></span>📁 Google Drive y Google Meet</div>
+      <div class="feature-item"><span class="feature-dot"></span>📊 Planilla de ingresos y egresos</div>
+      <div class="feature-item"><span class="feature-dot"></span>💰 Costos y listas de precios</div>
+      <div class="feature-item"><span class="feature-dot"></span>Dejá tu consulta · Respondemos en un máximo de 24 hs · Lunes a lunes</div>
+      <div class="feature-item"><span class="feature-dot"></span>Acceso gratuito por un año</div>
+    </div>
+    <a class="btn btn-gray" href="https://www.skool.com/escuela-de-gestion-digital-8689" target="_blank">
+      <span class="btn-icon btn-icon-gray">🔗</span>
+      <div>
+        <div class="btn-text">Crear mi perfil en Skool</div>
+        <div class="btn-sub">skool.com/escuela-de-gestion-digital</div>
+      </div>
+    </a>
     <a class="btn btn-gray" href="https://youtu.be/8TFUBXfmRxw" target="_blank">
       <span class="btn-icon btn-icon-gray">▶</span>
       <div>
