@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial — Vinculá tu calendario</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background: #0f1629; padding: 20px 16px 40px; }
+  .guide { max-width: 420px; margin: 0 auto; }
+
+  .header { margin-bottom: 20px; padding: 16px 0; }
+  .brand-name { color: white; font-size: 16px; font-weight: 800; }
+  .brand-sub { color: #64748b; font-size: 11px; margin-top: 2px; }
+
+  .page-label { color: #f97316; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .page-title { color: white; font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+  .page-sub { color: #94a3b8; font-size: 12px; margin-bottom: 28px; line-height: 1.6; }
+
+  .step { margin-bottom: 32px; }
+  .step-label { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .step-num { background: #f97316; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+  .step-text { color: white; font-size: 15px; font-weight: 700; }
+  .step-desc { color: #94a3b8; font-size: 12px; margin-bottom: 14px; padding-left: 38px; line-height: 1.6; }
+
+  .phone { background: #1c1c2e; border-radius: 28px; border: 2px solid #2d2d44; overflow: hidden; margin: 0 auto; max-width: 280px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+  .phone-bar { background: #2d2d44; padding: 8px 12px; display: flex; align-items: center; gap: 6px; }
+  .phone-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .phone-url { background: #3d3d5c; border-radius: 5px; flex: 1; padding: 3px 8px; color: #64748b; font-size: 9px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .phone-screen { padding: 14px; }
+
+  /* Landing buttons */
+  .landing-preview { background: #0f1629; border-radius: 10px; padding: 10px; }
+  .lp-title { color: #f97316; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .lp-heading { color: white; font-size: 12px; font-weight: 800; margin-bottom: 8px; }
+  .lp-btn { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.35); border-radius: 8px; padding: 7px 10px; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+  .lp-btn.highlight { background: rgba(249,115,22,0.35); border-color: #f97316; box-shadow: 0 0 0 2px rgba(249,115,22,0.3); }
+  .lp-btn-icon { color: #f97316; font-size: 13px; }
+  .lp-btn-text { color: #e2e8f0; font-size: 10px; font-weight: 600; }
+  .lp-btn-sub { color: #64748b; font-size: 9px; }
+  .tap-hint { text-align: right; margin-top: 3px; color: #f97316; font-size: 9px; font-weight: 700; }
+
+  /* Google Calendar form */
+  .gcal-form { background: white; border-radius: 12px; overflow: hidden; }
+  .gcal-topbar { background: white; border-bottom: 1px solid #e0e0e0; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .gcal-close { color: #5f6368; font-size: 16px; }
+  .gcal-title-field { color: #202124; font-size: 14px; font-weight: 700; flex: 1; margin: 0 8px; }
+  .gcal-save-btn { background: #1a73e8; color: white; border-radius: 20px; padding: 7px 16px; font-size: 12px; font-weight: 700; border: 2px solid #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,0.2); }
+  .gcal-body { padding: 12px; }
+  .gcal-date-row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+  .gcal-date-chip { background: #f1f3f4; border-radius: 6px; padding: 4px 8px; color: #202124; font-size: 10px; }
+  .gcal-repeat { background: #e8f0fe; border-radius: 6px; padding: 4px 8px; color: #1a73e8; font-size: 10px; font-weight: 600; }
+  .gcal-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; padding: 4px 0; }
+  .gcal-icon { width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+  .gcal-row-text { color: #3c4043; font-size: 10px; }
+  .gcal-row-text.meet { color: #1a73e8; font-weight: 600; }
+  .tap-save { text-align: center; margin-top: 6px; }
+  .tap-save-text { color: #f97316; font-size: 10px; font-weight: 700; }
+
+  /* Calendar weekly view */
+  .cal-week-view { background: white; border-radius: 12px; overflow: hidden; }
+  .cal-week-header { background: white; border-bottom: 1px solid #e0e0e0; padding: 6px; display: grid; grid-template-columns: 40px repeat(7, 1fr); gap: 2px; }
+  .cal-col-header { text-align: center; }
+  .cal-col-day-name { color: #5f6368; font-size: 8px; text-transform: uppercase; }
+  .cal-col-day-num { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; color: #202124; margin: 2px auto 0; }
+  .cal-col-day-num.today { background: #1a73e8; color: white; }
+  .cal-body-grid { padding: 4px 6px 8px; }
+  .cal-time-row { display: grid; grid-template-columns: 40px repeat(7, 1fr); gap: 2px; margin-bottom: 3px; }
+  .cal-time-label { color: #5f6368; font-size: 8px; text-align: right; padding-right: 4px; padding-top: 2px; }
+  .cal-event { border-radius: 4px; padding: 2px 4px; font-size: 8px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cal-event.orange { background: #fff3e0; color: #e65100; border-left: 2px solid #f97316; }
+  .cal-event.blue { background: #e8f0fe; color: #1a73e8; border-left: 2px solid #1a73e8; }
+  .cal-empty { height: 16px; }
+
+  .tip { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); border-radius: 10px; padding: 10px 14px; margin-top: 12px; }
+  .tip-text { color: #94a3b8; font-size: 12px; line-height: 1.6; }
+  .tip-text strong { color: #22c55e; }
+
+  .tip-orange { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.25); border-radius: 10px; padding: 10px 14px; margin-top: 12px; }
+  .tip-orange .tip-text strong { color: #f97316; }
+
+  .divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 0 28px; }
+
+  .back-btn { display: flex; align-items: center; gap: 8px; background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.25); border-radius: 10px; padding: 11px 14px; text-decoration: none; margin-top: 24px; }
+  .back-btn-text { color: #f97316; font-size: 13px; font-weight: 600; }
+  .footer { text-align: center; color: #334155; font-size: 11px; margin-top: 28px; }
+</style>
+</head>
+<body>
+<div class="guide">
+
+  <div class="header">
+    <div class="brand-name">VM Gestión Digital</div>
+    <div class="brand-sub">Escuela para dueños de negocios</div>
+  </div>
+
+  <div class="page-label">Tutorial paso a paso</div>
+  <div class="page-title">Cómo vincular tu calendario</div>
+  <div class="page-sub">Hacelo una sola vez para cada una de las 3 clases y listo para toda la semana. Después te aparecen automáticamente en tu teléfono o computadora con el link para entrar directo.</div>
+
+  <!-- PASO 1 -->
+  <div class="step">
+    <div class="step-label">
+      <div class="step-num">1</div>
+      <div class="step-text">Tocás el botón de la clase</div>
+    </div>
+    <div class="step-desc">En la página de horarios, tocás el botón 📅 de la clase que querés vincular. Podés vincular las tres.</div>
+    <div class="phone">
+      <div class="phone-bar">
+        <div class="phone-dot" style="background:#ff5f57"></div>
+        <div class="phone-dot" style="background:#febc2e"></div>
+        <div class="phone-dot" style="background:#28c840"></div>
+        <div class="phone-url">horarios.vmgestiondigital.com</div>
+      </div>
+      <div class="phone-screen">
+        <div class="landing-preview">
+          <div class="lp-title">Vinculá tu calendario</div>
+          <div class="lp-heading">¿Cómo conectarme a mis clases?</div>
+          <div class="lp-btn highlight">
+            <span class="lp-btn-icon">📅</span>
+            <div>
+              <div class="lp-btn-text">Clase en vivo — Consultoría</div>
+              <div class="lp-btn-sub">Lunes 13hs y 15hs</div>
+            </div>
+          </div>
+          <div class="lp-btn">
+            <span class="lp-btn-icon">📅</span>
+            <div>
+              <div class="lp-btn-text">Clase de soporte — 13hs</div>
+              <div class="lp-btn-sub">Mar · Miér · Jue · Vie</div>
+            </div>
+          </div>
+          <div class="lp-btn">
+            <span class="lp-btn-icon">📅</span>
+            <div>
+              <div class="lp-btn-text">Clase de soporte — 16hs</div>
+              <div class="lp-btn-sub">Mar y Jue</div>
+            </div>
+          </div>
+          <div class="tap-hint">☝️ Tocá cualquiera de los tres</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PASO 2 -->
+  <div class="step">
+    <div class="step-label">
+      <div class="step-num">2</div>
+      <div class="step-text">Apretás "Guardar"</div>
+    </div>
+    <div class="step-desc">Se abre Google Calendar con el evento ya cargado — el nombre, el horario y el link del Meet. Solo apretás el botón azul "Guardar" que está arriba a la derecha.</div>
+    <div class="phone">
+      <div class="phone-bar">
+        <div class="phone-dot" style="background:#ff5f57"></div>
+        <div class="phone-dot" style="background:#febc2e"></div>
+        <div class="phone-dot" style="background:#28c840"></div>
+        <div class="phone-url">calendar.google.com</div>
+      </div>
+      <div class="phone-screen">
+        <div class="gcal-form">
+          <div class="gcal-topbar">
+            <span class="gcal-close">✕</span>
+            <span class="gcal-title-field">Consultoría + Excel</span>
+            <span class="gcal-save-btn">Guardar</span>
+          </div>
+          <div class="gcal-body">
+            <div class="gcal-date-row">
+              <span class="gcal-date-chip">Lun 8 jun</span>
+              <span class="gcal-date-chip">1:00pm – 2:30pm</span>
+              <span class="gcal-repeat">↻ Cada semana</span>
+            </div>
+            <div class="gcal-row">
+              <div class="gcal-icon" style="background:#fce8e6;">📹</div>
+              <div class="gcal-row-text meet">meet.google.com/cda-zxvt-tbj</div>
+            </div>
+            <div class="gcal-row">
+              <div class="gcal-icon" style="background:#f1f3f4;">📍</div>
+              <div class="gcal-row-text">Gestion Digital VM</div>
+            </div>
+            <div class="gcal-row">
+              <div class="gcal-icon" style="background:#e8f0fe;">🔔</div>
+              <div class="gcal-row-text">Notificación 30 minutos antes</div>
+            </div>
+          </div>
+        </div>
+        <div class="tap-save">
+          <div class="tap-save-text">☝️ Tocá "Guardar" arriba a la derecha</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip-orange">
+      <div class="tip-text">💡 No necesitás cambiar nada — el evento ya viene con toda la información lista.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PASO 3 -->
+  <div class="step">
+    <div class="step-label">
+      <div class="step-num">3</div>
+      <div class="step-text">¡Listo! Ya aparece en tu calendario</div>
+    </div>
+    <div class="step-desc">El evento queda guardado y te aparece cada semana. Tocás el evento el día de la clase y entrás directo al Meet.</div>
+    <div class="phone">
+      <div class="phone-bar">
+        <div class="phone-dot" style="background:#ff5f57"></div>
+        <div class="phone-dot" style="background:#febc2e"></div>
+        <div class="phone-dot" style="background:#28c840"></div>
+        <div class="phone-url">calendar.google.com</div>
+      </div>
+      <div class="phone-screen">
+        <div class="cal-week-view">
+          <div class="cal-week-header">
+            <div></div>
+            <div class="cal-col-header">
+              <div class="cal-col-day-name">DOM</div>
+              <div class="cal-col-day-num">7</div>
+            </div>
+            <div class="cal-col-header">
+              <div class="cal-col-day-name">LUN</div>
+              <div class="cal-col-day-num" style="background:#f97316; color:white;">8</div>
+            </div>
+            <div class="cal-col-header">
+              <div class="cal-col-day-name">MAR</div>
+              <div class="cal-col-day-num">9</div>
+            </div>
+            <div class="cal-col-header">
+              <div class="cal-col-day-name">MIÉ</div>
+              <div class="cal-col-day-num today">10</div>
+            </div>
+            <div class="cal-col-header">
+              <div class="cal-col-day-name">JUE</div>
+              <div class="cal-col-day-num">11</div>
+            </div>
+            <div class="cal-col-header">
+              <div class="cal-col-day-name">VIE</div>
+              <div class="cal-col-day-num">12</div>
+            </div>
+            <div class="cal-col-header">
+              <div class="cal-col-day-name">SÁB</div>
+              <div class="cal-col-day-num">13</div>
+            </div>
+          </div>
+          <div class="cal-body-grid">
+            <div class="cal-time-row">
+              <div class="cal-time-label">1 PM</div>
+              <div></div>
+              <div class="cal-event orange">Consultoría</div>
+              <div class="cal-event blue">Soporte</div>
+              <div class="cal-event blue">Soporte</div>
+              <div class="cal-event blue">Soporte</div>
+              <div class="cal-event blue">Soporte</div>
+              <div></div>
+            </div>
+            <div class="cal-time-row">
+              <div class="cal-time-label">4 PM</div>
+              <div></div>
+              <div></div>
+              <div class="cal-event blue">Soporte 16hs</div>
+              <div></div>
+              <div class="cal-event blue">Soporte 16hs</div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <div class="tip-text">✅ <strong>¡Perfecto!</strong> Repetí los pasos 1 y 2 para vincular también las clases de soporte. Son 3 botones en total.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PASO 4 -->
+  <div class="step">
+    <div class="step-label">
+      <div class="step-num">4</div>
+      <div class="step-text">Para ver clases grabadas</div>
+    </div>
+    <div class="step-desc">Buscá en tu calendario la fecha de la clase que querés ver. Tocás el evento y presioná el cuadradito rojo 🎬 para abrir la grabación.</div>
+    <div class="phone">
+      <div class="phone-bar">
+        <div class="phone-dot" style="background:#ff5f57"></div>
+        <div class="phone-dot" style="background:#febc2e"></div>
+        <div class="phone-dot" style="background:#28c840"></div>
+        <div class="phone-url">calendar.google.com</div>
+      </div>
+      <div class="phone-screen">
+        <div class="gcal-form">
+          <div class="gcal-topbar">
+            <span class="gcal-close">←</span>
+            <span class="gcal-title-field" style="font-size:11px;">Consultoría · Lun 2 jun</span>
+          </div>
+          <div class="gcal-body">
+            <div class="gcal-date-row">
+              <span class="gcal-date-chip">Lun 2 jun · 1–2:30pm</span>
+            </div>
+            <div class="gcal-row">
+              <div class="gcal-icon" style="background:#e8f0fe;">📹</div>
+              <div class="gcal-row-text meet">Unirse a Google Meet</div>
+            </div>
+            <div class="gcal-row" style="background:#fce8e6; border-radius:8px; padding:6px 8px; border: 1px solid #f97316;">
+              <div class="gcal-icon" style="background:#ea4335; border-radius:6px;">🎬</div>
+              <div>
+                <div class="gcal-row-text" style="color:#ea4335; font-weight:700;">Ver grabación</div>
+                <div class="gcal-row-text">Tocá el cuadradito rojo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tip-orange">
+      <div class="tip-text">💡 <strong>Tip:</strong> Si no ves el cuadradito rojo, buscá en la descripción del evento el link a la grabación de esa clase.</div>
+    </div>
+  </div>
+
+  <a class="back-btn" href="https://horarios.vmgestiondigital.com">
+    <span style="color:#f97316; font-size:16px;">←</span>
+    <span class="back-btn-text">Volver a la página de horarios</span>
+  </a>
+
+  <div class="footer">VM Gestión Digital · ¿Dudas? Consultá en Skool</div>
+
+</div>
+</body>
+</html>
