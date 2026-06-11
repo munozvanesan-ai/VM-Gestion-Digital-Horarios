@@ -14,74 +14,84 @@
   .page-label { color: #f97316; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
   .page-title { color: white; font-size: 20px; font-weight: 800; margin-bottom: 6px; }
   .page-sub { color: #94a3b8; font-size: 12px; margin-bottom: 28px; line-height: 1.6; }
+
   .step { margin-bottom: 32px; }
   .step-label { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
   .step-num { background: #f97316; color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; }
   .step-text { color: white; font-size: 15px; font-weight: 700; }
   .step-desc { color: #94a3b8; font-size: 12px; margin-bottom: 14px; padding-left: 38px; line-height: 1.6; }
-  .phone { background: #1c1c2e; border-radius: 28px; border: 2px solid #2d2d44; overflow: hidden; margin: 0 auto; max-width: 280px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+
+  .phone { background: #1c1c2e; border-radius: 28px; border: 2px solid #2d2d44; overflow: hidden; margin: 0 auto; max-width: 260px; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
   .phone-bar { background: #2d2d44; padding: 8px 12px; display: flex; align-items: center; gap: 6px; }
   .phone-dot { width: 7px; height: 7px; border-radius: 50%; }
   .phone-url { background: #3d3d5c; border-radius: 5px; flex: 1; padding: 3px 8px; color: #64748b; font-size: 9px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-  .phone-screen { padding: 14px; }
+  .phone-screen { padding: 0; }
 
-  /* Landing */
-  .landing-preview { background: #0f1629; border-radius: 10px; padding: 10px; }
+  /* Paso 1 — landing */
+  .landing-preview { background: #0f1629; padding: 12px; }
   .lp-title { color: #f97316; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-  .lp-heading { color: white; font-size: 12px; font-weight: 800; margin-bottom: 8px; }
+  .lp-heading { color: white; font-size: 11px; font-weight: 800; margin-bottom: 8px; }
   .lp-btn { background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.35); border-radius: 8px; padding: 7px 10px; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
-  .lp-btn.highlight { background: rgba(249,115,22,0.35); border-color: #f97316; box-shadow: 0 0 0 2px rgba(249,115,22,0.3); }
+  .lp-btn.hl { background: rgba(249,115,22,0.35); border-color: #f97316; box-shadow: 0 0 0 2px rgba(249,115,22,0.3); }
   .lp-btn-icon { color: #f97316; font-size: 13px; }
   .lp-btn-text { color: #e2e8f0; font-size: 10px; font-weight: 600; }
   .lp-btn-sub { color: #64748b; font-size: 9px; }
-  .tap-hint { text-align: right; margin-top: 3px; color: #f97316; font-size: 9px; font-weight: 700; }
+  .tap-hint { text-align: right; margin-top: 4px; color: #f97316; font-size: 9px; font-weight: 700; }
 
-  /* Calendar invite screen */
-  .cal-invite { background: white; border-radius: 12px; overflow: hidden; }
-  .cal-invite-header { background: #e8f4fd; padding: 14px 12px 10px; text-align: center; border-bottom: 1px solid #e0e0e0; }
-  .cal-invite-icon { font-size: 32px; margin-bottom: 4px; }
-  .cal-invite-title { color: #202124; font-size: 13px; font-weight: 700; margin-bottom: 2px; }
-  .cal-invite-time { color: #5f6368; font-size: 10px; }
-  .cal-invite-body { padding: 12px; }
-  .cal-invite-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-  .cal-invite-icon-sm { font-size: 14px; width: 20px; text-align: center; }
-  .cal-invite-text { color: #3c4043; font-size: 10px; }
-  .cal-invite-text.blue { color: #1a73e8; }
-  .cal-asistiras { background: #f8f9fa; border-top: 1px solid #e0e0e0; padding: 10px 12px; text-align: center; }
-  .cal-asistiras-text { color: #5f6368; font-size: 10px; margin-bottom: 8px; }
-  .cal-btns { display: flex; gap: 6px; justify-content: center; }
-  .cal-btn { border-radius: 20px; padding: 6px 14px; font-size: 11px; font-weight: 600; border: 1px solid #dadce0; color: #3c4043; background: white; }
-  .cal-btn.si { background: #1a73e8; color: white; border-color: #1a73e8; }
+  /* Paso 2 — pantalla calendario */
+  .gcal-invite { background: white; }
+  .gcal-img { background: linear-gradient(135deg, #e8f4fd 0%, #d2e8f8 100%); padding: 16px; text-align: center; }
+  .gcal-img-icon { font-size: 40px; }
+  .gcal-body { padding: 14px 14px 0; }
+  .gcal-event-title { color: #202124; font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .gcal-event-time { color: #5f6368; font-size: 10px; margin-bottom: 10px; }
+  .gcal-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .gcal-icon { font-size: 14px; width: 20px; text-align: center; }
+  .gcal-text { color: #3c4043; font-size: 10px; }
+  .gcal-text.blue { color: #1a73e8; font-weight: 600; }
+  .gcal-invitados { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+  .gcal-avatar { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: white; flex-shrink: 0; }
+  .gcal-avatar-info { font-size: 9px; }
+  .gcal-avatar-name { color: #202124; font-weight: 600; }
+  .gcal-avatar-role { color: #5f6368; }
+  .gcal-respondido { background: #f8f9fa; border-top: 1px solid #e0e0e0; padding: 10px 14px; }
+  .gcal-respondido-text { color: #5f6368; font-size: 9px; margin-bottom: 8px; }
+  .gcal-respondido-mail { color: #1a73e8; font-weight: 600; }
+  .gcal-btns { display: flex; gap: 6px; }
+  .gcal-btn { border-radius: 20px; padding: 7px 16px; font-size: 11px; font-weight: 600; border: 1px solid #dadce0; color: #3c4043; background: white; }
+  .gcal-btn.si { background: #1a73e8; color: white; border-color: #1a73e8; position: relative; }
+  .gcal-btn.si::after { content: '☝️'; position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 14px; }
 
-  /* Email screen */
-  .email-screen { background: white; border-radius: 12px; overflow: hidden; }
-  .email-header { background: #f8f9fa; padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
-  .email-from { color: #5f6368; font-size: 9px; margin-bottom: 2px; }
-  .email-subject { color: #202124; font-size: 10px; font-weight: 700; }
-  .email-body { padding: 10px 12px; }
-  .email-event-card { background: #f8f9fa; border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; border-left: 3px solid #1a73e8; }
-  .email-event-title { color: #202124; font-size: 11px; font-weight: 700; margin-bottom: 2px; }
-  .email-event-time { color: #5f6368; font-size: 9px; margin-bottom: 4px; }
-  .email-meet-btn { background: #1a73e8; color: white; border-radius: 6px; padding: 5px 10px; font-size: 9px; font-weight: 600; display: inline-block; }
-  .email-rsvp-section { border-top: 1px solid #e0e0e0; padding-top: 8px; margin-top: 4px; }
-  .email-rsvp-label { color: #5f6368; font-size: 9px; margin-bottom: 6px; }
-  .email-rsvp-note { color: #ea4335; font-size: 9px; font-weight: 700; margin-bottom: 6px; }
-  .email-rsvp-btns { display: flex; gap: 5px; }
-  .email-rsvp-btn { border-radius: 16px; padding: 5px 12px; font-size: 10px; font-weight: 600; border: 1px solid #dadce0; color: #3c4043; background: white; }
-  .email-rsvp-btn.si { background: #1a73e8; color: white; border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(249,115,22,0.4); }
-  .email-arrow { color: #f97316; font-size: 11px; font-weight: 700; margin-top: 4px; }
+  /* Paso 3 — mail */
+  .gmail-screen { background: white; }
+  .gmail-header { background: #f8f9fa; padding: 8px 12px; border-bottom: 1px solid #e0e0e0; }
+  .gmail-from { color: #5f6368; font-size: 8px; }
+  .gmail-subject { color: #202124; font-size: 10px; font-weight: 700; margin-top: 1px; }
+  .gmail-body { padding: 10px 12px; }
+  .gmail-event-block { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+  .gmail-event-title { color: #202124; font-size: 11px; font-weight: 700; margin-bottom: 2px; }
+  .gmail-event-time { color: #5f6368; font-size: 9px; margin-bottom: 6px; }
+  .gmail-meet-btn { background: #1a73e8; color: white; border-radius: 4px; padding: 4px 8px; font-size: 9px; font-weight: 600; display: inline-block; margin-bottom: 6px; }
+  .gmail-invitados { color: #3c4043; font-size: 9px; margin-bottom: 2px; }
+  .gmail-divider { height: 1px; background: #e0e0e0; margin: 8px 0; }
+  .gmail-rsvp-label { color: #5f6368; font-size: 9px; margin-bottom: 6px; }
+  .gmail-rsvp-btns { display: flex; gap: 5px; position: relative; }
+  .gmail-rsvp-btn { border-radius: 16px; padding: 5px 12px; font-size: 10px; font-weight: 600; border: 1px solid #dadce0; color: #3c4043; background: white; }
+  .gmail-rsvp-btn.si { background: #1a73e8; color: white; border-color: #1a73e8; }
+  .gmail-arrow-container { margin-top: 6px; display: flex; align-items: center; gap: 4px; }
+  .gmail-arrow { color: #ea4335; font-size: 10px; font-weight: 700; }
 
-  /* Calendar result */
-  .cal-week-view { background: white; border-radius: 12px; overflow: hidden; }
-  .cal-week-header { background: white; border-bottom: 1px solid #e0e0e0; padding: 6px; display: grid; grid-template-columns: 30px repeat(7, 1fr); gap: 1px; }
+  /* Paso 4 — calendario */
+  .cal-week-view { background: white; }
+  .cal-week-header { border-bottom: 1px solid #e0e0e0; padding: 4px 6px; display: grid; grid-template-columns: 28px repeat(7, 1fr); gap: 1px; }
   .cal-col-header { text-align: center; }
   .cal-col-day-name { color: #5f6368; font-size: 7px; text-transform: uppercase; }
   .cal-col-day-num { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500; color: #202124; margin: 1px auto 0; }
   .cal-col-day-num.today { background: #1a73e8; color: white; }
-  .cal-col-day-num.highlight { background: #f97316; color: white; }
+  .cal-col-day-num.hl { background: #f97316; color: white; }
   .cal-body-grid { padding: 3px 4px 6px; }
-  .cal-time-row { display: grid; grid-template-columns: 30px repeat(7, 1fr); gap: 1px; margin-bottom: 2px; }
-  .cal-time-label { color: #5f6368; font-size: 7px; text-align: right; padding-right: 3px; padding-top: 1px; }
+  .cal-time-row { display: grid; grid-template-columns: 28px repeat(7, 1fr); gap: 1px; margin-bottom: 2px; }
+  .cal-time-label { color: #5f6368; font-size: 7px; text-align: right; padding-right: 2px; padding-top: 1px; }
   .cal-event { border-radius: 3px; padding: 1px 3px; font-size: 7px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .cal-event.orange { background: #fff3e0; color: #e65100; border-left: 2px solid #f97316; }
   .cal-event.blue { background: #e8f0fe; color: #1a73e8; border-left: 2px solid #1a73e8; }
@@ -126,8 +136,8 @@
       <div class="phone-screen">
         <div class="landing-preview">
           <div class="lp-title">Vinculá tu calendario</div>
-          <div class="lp-heading">¿Cómo conectarme?</div>
-          <div class="lp-btn highlight">
+          <div class="lp-heading">¿Cómo conectarme a mis clases?</div>
+          <div class="lp-btn hl">
             <span class="lp-btn-icon">📅</span>
             <div>
               <div class="lp-btn-text">Clase en vivo — Consultoría</div>
@@ -162,7 +172,7 @@
       <div class="step-num">2</div>
       <div class="step-text">Tocás "Sí" en la pantalla que se abre</div>
     </div>
-    <div class="step-desc">Se abre una pantalla con los detalles de la clase. Abajo dice "¿Asistirás?" — tocás el botón <strong style="color:white;">Sí</strong>.</div>
+    <div class="step-desc">Se abre una pantalla con los detalles de la clase. Abajo dice "¿Asistirás?" — tocás <strong style="color:white;">Sí</strong>.</div>
     <div class="phone">
       <div class="phone-bar">
         <div class="phone-dot" style="background:#ff5f57"></div>
@@ -171,28 +181,38 @@
         <div class="phone-url">calendar.app.google</div>
       </div>
       <div class="phone-screen">
-        <div class="cal-invite">
-          <div class="cal-invite-header">
-            <div class="cal-invite-icon">📅</div>
-            <div class="cal-invite-title">Consultoría de negocios + Excel</div>
-            <div class="cal-invite-time">Lunes · 1:00 – 2:30 pm · Cada semana</div>
+        <div class="gcal-invite">
+          <div class="gcal-img">
+            <div class="gcal-img-icon">📅</div>
           </div>
-          <div class="cal-invite-body">
-            <div class="cal-invite-row">
-              <span class="cal-invite-icon-sm">📹</span>
-              <span class="cal-invite-text blue">Unirme con Google Meet</span>
+          <div class="gcal-body">
+            <div class="gcal-event-title">Consultoría de negocios + Excel</div>
+            <div class="gcal-event-time">Lunes · 1:00 – 2:30 pm · Cada semana</div>
+            <div class="gcal-row">
+              <span class="gcal-icon">📹</span>
+              <span class="gcal-text blue">Unirme con Google Meet</span>
             </div>
-            <div class="cal-invite-row">
-              <span class="cal-invite-icon-sm">👤</span>
-              <span class="cal-invite-text">Vane Muñoz · Organizador</span>
+            <div class="gcal-invitados">
+              <div class="gcal-avatar" style="background:#e8846a;">V</div>
+              <div class="gcal-avatar-info">
+                <div class="gcal-avatar-name">Vane Muñoz</div>
+                <div class="gcal-avatar-role">Organizador</div>
+              </div>
+            </div>
+            <div class="gcal-invitados">
+              <div class="gcal-avatar" style="background:#64748b;">👤</div>
+              <div class="gcal-avatar-info">
+                <div class="gcal-avatar-name">Tu mail</div>
+                <div class="gcal-avatar-role">Invitado</div>
+              </div>
             </div>
           </div>
-          <div class="cal-asistiras">
-            <div class="cal-asistiras-text">¿Asistirás?</div>
-            <div class="cal-btns">
-              <div class="cal-btn si">Sí ☝️</div>
-              <div class="cal-btn">No</div>
-              <div class="cal-btn">Quizás</div>
+          <div class="gcal-respondido">
+            <div class="gcal-respondido-text">Has respondido como <span class="gcal-respondido-mail">tu-mail@gmail.com</span></div>
+            <div class="gcal-btns">
+              <div class="gcal-btn si">Sí</div>
+              <div class="gcal-btn">No</div>
+              <div class="gcal-btn">Quizás</div>
             </div>
           </div>
         </div>
@@ -211,7 +231,7 @@
       <div class="step-num">3</div>
       <div class="step-text">Abrís el mail y confirmás</div>
     </div>
-    <div class="step-desc">Te llega un mail de Google Calendar. Abrilo y buscá abajo donde dice <strong style="color:white;">"Sí · No · Quizás"</strong> — tocás el <strong style="color:white;">Sí de abajo</strong>. Ese es el que confirma en tu calendario.</div>
+    <div class="step-desc">Te llega un mail de Google Calendar. Abrilo, bajá hasta donde dice <strong style="color:white;">"Sí · No · Quizás"</strong> y tocás <strong style="color:#ea4335;">Sí</strong>. Ese es el que confirma en tu calendario.</div>
     <div class="phone">
       <div class="phone-bar">
         <div class="phone-dot" style="background:#ff5f57"></div>
@@ -220,33 +240,34 @@
         <div class="phone-url">Gmail</div>
       </div>
       <div class="phone-screen">
-        <div class="email-screen">
-          <div class="email-header">
-            <div class="email-from">Google Calendar · para mí</div>
-            <div class="email-subject">Invitación: Consultoría de negocios mar 8 jun</div>
+        <div class="gmail-screen">
+          <div class="gmail-header">
+            <div class="gmail-from">Google Calendar · para mí</div>
+            <div class="gmail-subject">Invitación: Consultoría de negocios lun 8 jun</div>
           </div>
-          <div class="email-body">
-            <div class="email-event-card">
-              <div class="email-event-title">Consultoría de negocios + Excel</div>
-              <div class="email-event-time">Lunes 8 jun · 1:00 – 2:30pm</div>
-              <div class="email-meet-btn">Unirme con Google Meet</div>
+          <div class="gmail-body">
+            <div class="gmail-event-block">
+              <div class="gmail-event-title">Consultoría de negocios + Excel</div>
+              <div class="gmail-event-time">Lunes 8 jun · 1:00 – 2:30pm · Cada semana</div>
+              <div class="gmail-meet-btn">Unirme con Google Meet</div>
+              <div class="gmail-invitados">Organizador: Vane Muñoz</div>
             </div>
-            <div class="email-rsvp-section">
-              <div class="email-rsvp-label">Responder a la invitación:</div>
-              <div class="email-rsvp-note">⬇️ Tocá el Sí de acá abajo</div>
-              <div class="email-rsvp-btns">
-                <div class="email-rsvp-btn si">Sí ✓</div>
-                <div class="email-rsvp-btn">No</div>
-                <div class="email-rsvp-btn">Quizás</div>
-              </div>
-              <div class="email-arrow">← Este Sí es el que confirma en tu calendario</div>
+            <div class="gmail-divider"></div>
+            <div class="gmail-rsvp-label">Responder a la invitación:</div>
+            <div class="gmail-rsvp-btns">
+              <div class="gmail-rsvp-btn si">Sí</div>
+              <div class="gmail-rsvp-btn">No</div>
+              <div class="gmail-rsvp-btn">Quizás</div>
+            </div>
+            <div class="gmail-arrow-container">
+              <span class="gmail-arrow">⬆️ Tocá este Sí para confirmar en tu calendario</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class="tip-orange">
-      <div class="tip-text">⚠️ <strong>Importante:</strong> No es el "Sí" de arriba del mail — es el que está abajo en la sección "Responder a la invitación".</div>
+      <div class="tip-text">⚠️ <strong>Importante:</strong> Tocá el Sí que está en la sección "Responder a la invitación", no otro.</div>
     </div>
   </div>
 
@@ -258,7 +279,7 @@
       <div class="step-num">4</div>
       <div class="step-text">¡Listo! Ya aparece en tu calendario</div>
     </div>
-    <div class="step-desc">Abrís Google Calendar y el evento aparece cada semana. Tocás el día de la clase y entrás directo al Meet. Repetí los pasos 1 a 3 para vincular las otras 2 clases.</div>
+    <div class="step-desc">Abrís Google Calendar y el evento aparece cada semana. Tocás el día de la clase y entrás directo al Meet. Repetí los pasos 1 a 3 para las otras 2 clases.</div>
     <div class="phone">
       <div class="phone-bar">
         <div class="phone-dot" style="background:#ff5f57"></div>
@@ -271,7 +292,7 @@
           <div class="cal-week-header">
             <div></div>
             <div class="cal-col-header"><div class="cal-col-day-name">DOM</div><div class="cal-col-day-num">7</div></div>
-            <div class="cal-col-header"><div class="cal-col-day-name">LUN</div><div class="cal-col-day-num highlight">8</div></div>
+            <div class="cal-col-header"><div class="cal-col-day-name">LUN</div><div class="cal-col-day-num hl">8</div></div>
             <div class="cal-col-header"><div class="cal-col-day-name">MAR</div><div class="cal-col-day-num">9</div></div>
             <div class="cal-col-header"><div class="cal-col-day-name">MIÉ</div><div class="cal-col-day-num today">10</div></div>
             <div class="cal-col-header"><div class="cal-col-day-name">JUE</div><div class="cal-col-day-num">11</div></div>
